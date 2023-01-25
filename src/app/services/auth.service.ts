@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../interfaces/user.interface';
 import { Credenciales } from '../interfaces/auth.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class AuthService {
   BASE_URL = 'https://jsonplaceholder.typicode.com';
   isLogin = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.getAllUsers().subscribe((res) => {
       this.users = res;
     });
@@ -29,9 +30,15 @@ export class AuthService {
     );
 
     if (res) {
+      localStorage.setItem('isLogin', JSON.stringify(this.isLogin));
       this.isLogin = true;
       return res;
     }
     return false;
+  }
+
+  logout() {
+    localStorage.removeItem('isLogin');
+    this.router.navigate(['login']);
   }
 }
