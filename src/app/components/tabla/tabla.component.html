@@ -1,0 +1,80 @@
+<div class="container w-full px-4 sm:px-8">
+  <div class="py-8">
+    <div class="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
+      <div class="inline-block min-w-full overflow-hidden rounded-lg shadow">
+        <table class="min-w-full leading-normal">
+          <thead>
+            <tr>
+              <th
+                scope="col"
+                class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+              >
+                Nombre
+              </th>
+              <th
+                scope="col"
+                class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+              >
+                Nombre de Usuario
+              </th>
+              <th
+                scope="col"
+                class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+              >
+                Email
+              </th>
+              <th
+                scope="col"
+                class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+              >
+                Address
+              </th>
+              <th
+                scope="col"
+                class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200"
+              >
+                Ubicación
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <p class="text-gray-900 whitespace-no-wrap">{{ user.name }}</p>
+              </td>
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{ user.username }}
+                </p>
+              </td>
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <p class="text-gray-900 whitespace-no-wrap">{{ user.email }}</p>
+              </td>
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <p class="text-gray-900 whitespace-no-wrap">
+                  {{ user.address.street }} {{ user.address.suite
+                  }}{{ user.address.city }} / {{ user.address.zipcode }}
+                </p>
+              </td>
+              <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                <a
+                  class="px-4 py-2 bg-green-300 rounded-lg"
+                  href="{{
+                    BASE_MAP_URL +
+                      '=' +
+                      user.address.geo.lat +
+                      ',' +
+                      user.address.geo.lng
+                  }}"
+                  target="_blank"
+                >
+                  Ver Ubicación
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

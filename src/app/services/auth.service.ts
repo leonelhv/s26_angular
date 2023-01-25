@@ -9,11 +9,11 @@ import { Credenciales } from '../interfaces/auth.interface';
 export class AuthService {
   users: User[] = [];
   BASE_URL = 'https://jsonplaceholder.typicode.com';
+  isLogin = false;
 
   constructor(private http: HttpClient) {
     this.getAllUsers().subscribe((res) => {
       this.users = res;
-      console.log(res);
     });
   }
 
@@ -22,10 +22,16 @@ export class AuthService {
   }
 
   login(credenciales: Credenciales) {
-    return this.users.some(
+    const res = this.users.some(
       (user) =>
         user.username === credenciales.usuario &&
         user.email === credenciales.password
     );
+
+    if (res) {
+      this.isLogin = true;
+      return res;
+    }
+    return false;
   }
 }
