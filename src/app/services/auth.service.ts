@@ -39,4 +39,8 @@ export class AuthService {
     localStorage.removeItem('isLogin');
     this.router.navigate(['login']);
   }
+
+  getDataUser(id: number) {
+    return this.http.get<User>(`${this.BASE_URL}/users/${id}`);
+  }
 }
