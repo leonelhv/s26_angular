@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class AuthService {
   users: User[] = [];
   BASE_URL = 'https://jsonplaceholder.typicode.com';
-  isLogin = false;
 
   constructor(private http: HttpClient, private router: Router) {
     this.getAllUsers().subscribe((res) => {
@@ -30,8 +29,7 @@ export class AuthService {
     );
 
     if (res) {
-      localStorage.setItem('isLogin', JSON.stringify(this.isLogin));
-      this.isLogin = true;
+      localStorage.setItem('isLogin', JSON.stringify(res));
       return res;
     }
     return false;
