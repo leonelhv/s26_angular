@@ -31,4 +31,7 @@ export class DetalleComponent implements OnInit {
       this.user = res;
     });
   }
+  volver() {
+    this.router.navigate(['/home']);
+  }
 }
